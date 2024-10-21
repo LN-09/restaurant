@@ -41,10 +41,10 @@ class UserController extends Controller
     public function destroy($user)
     {
         $isAdmin = $this->GetIsAdmin();
-        if($isAdmin === true){
+        if ($isAdmin === true) {
             $data = user::findOrFail($user);
-            $data -> delete();
-            return redirect() -> back();
+            $data->delete();
+            return redirect()->back();
         }
         return redirect()->route('user.index')->with('msg', 'User deleted successfully');
     }

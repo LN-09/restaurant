@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddToCartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
@@ -32,27 +33,51 @@ Route::controller(AdminController::class)->group(function () {
 
 /* User */
 Route::resource('user', UserController::class)->only([
-    'index','destroy'
+    'index',
+    'destroy'
 ]);
 
 /* Reservation */
 Route::resource('reservation', ReservationController::class)->only([
-    'index','store'
+    'index',
+    'store'
 ]);
 
 /* Food Menu */
 Route::resource('foodmenu', FoodMenuController::class)->only([
-    'index', 'create', 'store', 'edit', 'update', 'destroy'
+    'index',
+    'create',
+    'store',
+    'edit',
+    'update',
+    'destroy'
 ]);
+
+/*Cart*/
+Route::get('/cart', [AddToCartController::class, 'index'])->name('cart.index');
+Route::post('/add-to-cart/{id}', [AddToCartController::class, 'store'])->name('cart.add');
+Route::post('/update-cart/{id}', [AddToCartController::class, 'update'])->name('cart.update');
+Route::delete('/remove-from-cart/{id}', [AddToCartController::class, 'destroy'])->name('cart.remove');
+
 
 /* Special Dish */
 Route::resource('specialdishes', SpecialDishController::class)->only([
-    'index', 'create', 'store', 'edit', 'update', 'destroy'
+    'index',
+    'create',
+    'store',
+    'edit',
+    'update',
+    'destroy'
 ]);
 
 /* Testimonial */
 Route::resource('testimonial', TestimonialController::class)->only([
-    'index', 'create', 'store', 'edit', 'update', 'destroy'
+    'index',
+    'create',
+    'store',
+    'edit',
+    'update',
+    'destroy'
 ]);
 
 /* jetstream auth */

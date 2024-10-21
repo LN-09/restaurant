@@ -18,10 +18,11 @@ class HomeController extends Controller
     private $navdata = [
         ["text" => "home", "href" => "#home"],
         ["text" => "about", "href" => "#about"],
-        ["text" => "menu", "href" => "#menu"],        
+        ["text" => "menu", "href" => "#menu"],
         ["text" => "testimonial", "href" => "#testimonial"],
         ["text" => "book", "href" => "#book"],
         ["text" => "contact", "href" => "#contact"],
+        ["text" => "cart", "href" => "#cart"],
     ];
 
     /**
@@ -37,4 +38,6 @@ class HomeController extends Controller
         $testimonialdata = testimonial::all();
         return view("home.index", compact('navdata', 'fooddata', 'dishesdata', 'testimonialdata'));
     }
+
+
 }
